@@ -1,0 +1,706 @@
+/* Login & Signup Page Styles */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a4d68, #088395);
+    padding: 20px;
+}
+
+.login-container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.login-header {
+    background-color: #05bfdb;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.login-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.login-body {
+    padding: 20px;
+}
+
+.user-type-selection {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.user-type-card {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-type-card:hover {
+    border-color: #05bfdb;
+    background-color: rgba(5, 191, 219, 0.05);
+}
+
+.user-type-card.active {
+    border-color: #05bfdb;
+    background-color: rgba(5, 191, 219, 0.1);
+}
+
+.user-type-card i {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #05bfdb;
+}
+
+.user-type-card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.login-tabs {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+    position: relative;
+}
+
+.tab.active {
+    color: #05bfdb;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #05bfdb;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #05bfdb;
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #05bfdb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0a4d68;
+}
+
+.login-footer {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+}
+
+.login-footer a {
+    color: #05bfdb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Signup Form Styles */
+#signup-form {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+#signup-form .form-header {
+    background-color: #05bfdb;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#signup-form .form-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#signup-form .form-body {
+    padding: 20px;
+}
+
+#signup-form .form-footer {
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-btn {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #d0d0d0;
+}
+
+.register-btn {
+    background-color: #05bfdb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+    background-color: #0a4d68;
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.alert.success {
+    background-color: #e6f7ed;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+/* Disaster Fund Predictor Styles */
+.disaster-predictor {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.disaster-predictor h3 {
+    color: #305f8b;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.prediction-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.prediction-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.prediction-form label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.prediction-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.prediction-form button {
+    grid-column: span 2;
+    background-color: #305f8b;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.prediction-form button:hover {
+    background-color: #254a6f;
+}
+
+.prediction-results {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #305f8b;
+}
+
+.fund-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #305f8b;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.budget-adjustments {
+    margin-top: 20px;
+}
+
+.budget-adjustments h4 {
+    color: #305f8b;
+    margin-bottom: 10px;
+}
+
+#budget-adjustments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#budget-adjustments-table th, 
+#budget-adjustments-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#budget-adjustments-table th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+    color: #333;
+}
+
+#budget-adjustments-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.negative-change {
+    color: #d32f2f;
+    font-weight: 500;
+}
+
+.no-change {
+    color: #388e3c;
+    font-weight: 500;
+}
+
+/* Word Cloud Styles */
+.word-cloud-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.word-cloud-item {
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: #075985;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    margin: 5px;
+    transition: transform 0.3s ease;
+}
+
+.word-cloud-item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Add category-specific colors for word cloud */
+.keyword-budget {
+    background-color: #3b82f6; /* Blue */
+}
+
+.keyword-policy {
+    background-color: #10b981; /* Green */
+}
+
+.keyword-service {
+    background-color: #f59e0b; /* Yellow */
+}
+
+.keyword-infrastructure {
+    background-color: #8b5cf6; /* Purple */
+}
+
+.keyword-concern {
+    background-color: #ef4444; /* Red */
+}
+
+.keyword-other {
+    background-color: #6b7280; /* Gray */
+}
+
+/* Public feedback results */
+.public-feedback-results {
+    margin-top: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-metrics {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.metric-card h5 {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #0369a1;
+}
+
+/* Importance and sentiment styles */
+.importance-high {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.importance-medium {
+    color: #f59e0b;
+    font-weight: bold;
+}
+
+.importance-low {
+    color: #10b981;
+    font-weight: bold;
+}
+
+.sentiment-positive {
+    color: #10b981;
+    font-weight: bold;
+}
+
+.sentiment-neutral {
+    color: #6b7280;
+    font-weight: bold;
+}
+
+.sentiment-negative {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.frequency-count {
+    background-color: #e5e7eb;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Public Feedback Form Styles */
+.feedback-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    overflow: hidden;
+    padding: 25px 30px;
+}
+
+.feedback-section h4 {
+    margin: 0 0 25px 0;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-row {
+    margin-bottom: 5px;
+}
+
+.feedback-form .form-group {
+    margin-bottom: 0;
+}
+
+.feedback-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #444;
+    font-size: 16px;
+}
+
+.feedback-form select,
+.feedback-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+    background-color: white;
+}
+
+.feedback-form select:focus,
+.feedback-form textarea:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.satisfaction-slider {
+    margin-top: 12px;
+    width: 100%;
+}
+
+.satisfaction-slider input[type="range"] {
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #1e3a8a, #93c5fd, #10b981);
+    border-radius: 5px;
+    appearance: none;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+.satisfaction-slider input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border: 2px solid #1e40af;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.satisfaction-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    color: #555;
+    font-size: 14px;
+}
+
+.submit-feedback-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin-top: 15px;
+    min-width: 180px;
+    text-align: center;
+}
+
+.submit-feedback-btn:hover {
+    background-color: #3d8b40;
+}
+
+.confirmation-message {
+    text-align: center;
+    padding: 30px;
+    background-color: #f0fdf4;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-message i {
+    font-size: 40px;
+    color: #22c55e;
+    margin-bottom: 15px;
+}
+
+.confirmation-message h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.confirmation-message p {
+    color: #666;
+}
+
+/* Navigation and Navbar Styles */
+.nav-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.feedback-nav-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.feedback-nav-btn:hover {
+    background-color: #3d8b40;
+}
+
+.feedback-nav-btn i {
+    font-size: 14px;
+}
+
+/* Feedback Call-to-Action Styles */
+.feedback-cta-container {
+    margin-top: 30px;
+}
+
+.feedback-cta-card {
+    background-color: #f0f9ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.feedback-cta-card h3 {
+    color: #1e40af;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.feedback-cta-card p {
+    color: #4b5563;
+    margin-bottom: 20px;
+}
+
+.cta-feedback-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cta-feedback-btn i {
+    font-size: 16px;
+}
+
+.cta-feedback-btn:hover {
+    background-color: #3d8b40;
+} 

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Allocation System</title>
+    <!-- Base styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Component-specific styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- New Loader -->
+    <div id="loader" class="loader-container">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <h2>Budget Allocation System</h2>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <p>Loading resources...</p>
+        </div>
+    </div>
+
+    <div id="login-page" class="hidden">
+        <div class="login-container">
+            <h1>Budget Allocation System</h1>
+            
+            <div class="user-type-selection">
+                <div class="user-type-card active" onclick="selectUserType('public')">
+                    <div class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Public User</h3>
+                    <p>Access public financial data with secure authentication. Citizen login required.</p>
+                </div>
+                <div class="user-type-card" onclick="selectUserType('government')">
+                    <div class="user-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Government Agent</h3>
+                    <p>Full access to financial management tools, advanced analytics, and administrative features.</p>
+                </div>
+            </div>
+            
+            <div class="login-tabs">
+                <div class="tab active" onclick="switchLoginTab('mobile')">Mobile Login</div>
+                <div class="tab" onclick="switchLoginTab('email')">Email Login</div>
+            </div>
+            
+            <div id="mobile-login" class="login-form-container">
+                <form id="mobile-auth-form">
+                    <div class="form-group">
+                        <label for="mobile-number">Mobile Number</label>
+                        <input type="tel" id="mobile-number" placeholder="Enter your registered mobile number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                        <p class="password-hint">Password must be at least 8 characters</p>
+                    </div>
+                    <div class="captcha-container">
+                        <div class="captcha-code">X9Y8Z2</div>
+                        <input type="text" id="captcha" placeholder="Enter CAPTCHA code" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+            </div>
+            
+            <div id="email-login" class="login-form-container hidden">
+                <form id="email-auth-form">
+                    <div class="form-group">
+                        <label for="email-id">Email Address</label>
+                        <input type="email" id="email-id" placeholder="Enter your registered email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-password">Password</label>
+                        <input type="password" id="email-password" placeholder="Enter your password" required>
+                        <p class="password-hint">Password must be at least 8 characters</p>
+                    </div>
+                    <div class="captcha-container">
+                        <div class="captcha-code">X9Y8Z2</div>
+                        <input type="text" id="email-captcha" placeholder="Enter CAPTCHA code" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+            </div>
+            
+            <p class="register-link">Don't have an account? <a href="#" onclick="showSignupForm()">Register here</a></p>
+        </div>
+        
+        <div id="signup-form" class="login-container hidden">
+            <h1>Create New Account</h1>
+            <button class="back-btn" onclick="backToLogin()"><i class="fas fa-arrow-left"></i> Back to Login</button>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="new-name">Full Name</label>
+                    <input type="text" id="new-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-mobile">Mobile Number</label>
+                    <input type="tel" id="new-mobile" placeholder="Enter your mobile number" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-email">Email Address</label>
+                    <input type="email" id="new-email" placeholder="Enter your email address" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">Password</label>
+                    <input type="password" id="new-password" placeholder="Create a password" required>
+                    <p class="password-hint">Password must be at least 8 characters</p>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard" class="hidden">
+        <nav class="navbar">
+            <h2>Government Portal</h2>
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </nav>
+        <div class="dashboard-content">
+            <div class="sidebar">
+                <ul>
+                    <li onclick="showSection('home')" class="active">
+                        <i class="fas fa-home"></i> Home
+                    </li>
+                    <li onclick="showSection('budget-analysis')">
+                        <i class="fas fa-chart-bar"></i> Budget Analysis
+                    </li>
+                    <li onclick="showSection('disaster-funds')">
+                        <i class="fas fa-exclamation-triangle"></i> Disaster Fund Predictor
+                    </li>
+                    <li onclick="showSection('tax-optimization')">
+                        <i class="fas fa-calculator"></i> Tax Optimization
+                    </li>
+                    <li onclick="showSection('voting-analysis')">
+                        <i class="fas fa-vote-yea"></i> Voting Analysis
+                    </li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <div id="home" class="section">
+                    <div class="total-budget-card">
+                        <h3>Total Budget Allocation</h3>
+                        <div class="budget-amount">₹2,25,000 Crores</div>
+                        <div class="budget-year">Fiscal Year 2023-24</div>
+                        <div class="budget-controls">
+                            <div class="custom-budget-input">
+                                <input type="number" id="custom-budget" min="100000" placeholder="Enter budget amount (in Crores)" class="budget-input">
+                                <button id="distribute-btn" class="distribute-btn" onclick="distributeCustomBudget()">
+                                    <i class="fas fa-chart-pie"></i> Distribute Budget
+                                </button>
+                            </div>
+                        </div>
+                        <div class="forecast-controls">
+                            <div class="year-selector">
+                                <select id="forecast-year" class="select-input">
+                                    <option value="2024" selected>2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                </select>
+                            </div>
+                            <button id="forecast-button" class="forecast-btn" onclick="generateBudgetForecast()">
+                                <i class="fas fa-chart-line"></i> Generate AI Forecast
+                            </button>
+                        </div>
+                    </div>
+                    <div id="forecast-message" class="forecast-message hidden">
+                        <i class="fas fa-robot"></i> <span id="forecast-text">AI-generated budget forecast for 2024</span>
+                    </div>
+                    
+                    <div class="budget-history">
+                        <h3>Historical Budget Data</h3>
+                        <div class="year-selector history-selector">
+                            <select id="history-year" class="select-input history-year" onchange="showHistoricalBudget()">
+                                <option value="2023" selected>2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                            </select>
+                        </div>
+                        <div class="history-total">
+                            <div class="history-label">Total Budget:</div>
+                            <div class="history-amount" id="history-total-amount">₹225,000 Crores</div>
+                        </div>
+                    </div>
+                    
+                    <div class="sector-allocation">
+                        <h3>Sector-wise Allocation</h3>
+                        <div class="sector-cards">
+                            <div class="sector-card">
+                                <i class="fas fa-hospital"></i>
+                                <h4>Healthcare</h4>
+                                <div class="sector-amount">₹50,000 Cr</div>
+                                <div class="sector-percentage">22.22%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-road"></i>
+                                <h4>Infrastructure</h4>
+                                <div class="sector-amount">₹45,000 Cr</div>
+                                <div class="sector-percentage">20%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h4>Education</h4>
+                                <div class="sector-amount">₹40,000 Cr</div>
+                                <div class="sector-percentage">17.78%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Defense</h4>
+                                <div class="sector-amount">₹35,000 Cr</div>
+                                <div class="sector-percentage">15.56%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-tractor"></i>
+                                <h4>Agriculture</h4>
+                                <div class="sector-amount">₹30,000 Cr</div>
+                                <div class="sector-percentage">13.33%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-hands-helping"></i>
+                                <h4>Social Welfare</h4>
+                                <div class="sector-amount">₹25,000 Cr</div>
+                                <div class="sector-percentage">11.11%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="budget-timeline">
+                        <h3>Budget Timeline</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">April 2023</div>
+                                <div class="timeline-content">
+                                    <h4>Budget Announcement</h4>
+                                    <p>Initial budget allocation announced</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">July 2023</div>
+                                <div class="timeline-content">
+                                    <h4>First Quarter Review</h4>
+                                    <p>Review of budget utilization</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">October 2023</div>
+                                <div class="timeline-content">
+                                    <h4>Mid-year Assessment</h4>
+                                    <p>Assessment of budget performance</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">January 2024</div>
+                                <div class="timeline-content">
+                                    <h4>Final Quarter Planning</h4>
+                                    <p>Planning for next fiscal year</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="budget-analysis" class="section hidden">
+                    <h3>Budget Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+                <div id="disaster-funds" class="section hidden">
+                    <h3>Disaster Fund Predictor</h3>
+                    <div class="prediction-container">
+                        <div class="prediction-form">
+                            <div class="form-group">
+                                <label for="disaster-severity">Disaster Severity (1-10)</label>
+                                <input type="number" id="disaster-severity" min="1" max="10" placeholder="Enter severity level">
+                            </div>
+                            <div class="form-group">
+                                <label for="estimated-damage">Estimated Damage (₹ Crores)</label>
+                                <input type="number" id="estimated-damage" min="0" placeholder="Enter estimated damage">
+                            </div>
+                            <button onclick="calculateDisasterFund()" id="calculate-disaster-fund" class="predict-btn">Calculate Fund Requirements</button>
+                        </div>
+                        <div class="prediction-results hidden">
+                            <div class="result-card">
+                                <h4>Required Disaster Fund</h4>
+                                <div class="fund-amount" id="required-fund">₹0 Crores</div>
+                            </div>
+                            <div class="budget-adjustments">
+                                <h4>Budget Adjustments</h4>
+                                <div class="adjustment-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Sector</th>
+                                                <th>Original Budget</th>
+                                                <th>Adjusted Budget</th>
+                                                <th>Difference</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="budget-adjustment-table-body">
+                                            <!-- Budget adjustment rows will be added here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tax-optimization" class="section hidden">
+                    <h3>Tax Optimization</h3>
+                    <div class="optimization-container">
+                        <div class="tax-optimization-form">
+                            <div class="form-group">
+                                <label for="economic-condition">Economic Condition</label>
+                                <select id="economic-condition" class="select-input">
+                                    <option value="recession">Recession</option>
+                                    <option value="stable" selected>Stable</option>
+                                    <option value="growth">Growth</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="revenue-target">Revenue Target (₹ Crores)</label>
+                                <input type="number" id="revenue-target" min="100000" value="200000" placeholder="Enter target revenue">
+                            </div>
+                            <button onclick="optimizeTaxes()" id="optimize-btn" class="predict-btn">Generate Tax Recommendations</button>
+                        </div>
+                        <div class="optimization-results hidden">
+                            <div class="result-card">
+                                <h4>Income-Tax Revenue</h4>
+                                <div class="economic-condition">Economic Condition: <span id="current-condition">Stable</span></div>
+                                <div class="fund-amount" id="projected-revenue">₹0 Crores</div>
+                            </div>
+                            <div class="tax-recommendations">
+                                <h4>Tax Optimization Recommendations</h4>
+                                <div class="recommendations-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Tax Type</th>
+                                                <th>Recommendation</th>
+                                                <th>Change</th>
+                                                <th>Impact</th>
+                                                <th>Revenue Effect</th>
+                                                <th>Implementation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tax-recommendations-body">
+                                            <!-- Tax recommendations will be added here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tax-chart-container" style="margin-top: 2rem;">
+                                <h4>Revenue Projection Chart</h4>
+                                <div class="chart-placeholder" style="height: 300px; background-color: #f8f9fa; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                    <p>Revenue projection chart will be added in future updates</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="voting-analysis" class="section hidden">
+                    <h3>Public Feedback Analysis</h3>
+                    
+                    <div class="feedback-results" id="feedback-results">
+                        <h4>AI Feedback Analysis</h4>
+                        <div class="feedback-metrics">
+                            <div class="metric-card">
+                                <h5>Total Feedback</h5>
+                                <div class="metric-value" id="total-feedback-count">0</div>
+                            </div>
+                            <div class="metric-card">
+                                <h5>Overall Satisfaction</h5>
+                                <div class="metric-value" id="overall-satisfaction">0%</div>
+                            </div>
+                            <div class="metric-card">
+                                <h5>Top Concern</h5>
+                                <div class="metric-value" id="top-concern">None</div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-analysis-container">
+                            <h4>Common Feedback Themes</h4>
+                            <div class="importance-legend">
+                                <div class="importance-item high">High Importance</div>
+                                <div class="importance-item medium">Medium Importance</div>
+                                <div class="importance-item low">Low Importance</div>
+                            </div>
+                            <div class="feedback-table-container">
+                                <table class="feedback-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Topic</th>
+                                            <th>Feedback</th>
+                                            <th>Importance</th>
+                                            <th>Sentiment</th>
+                                            <th>Frequency</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="feedback-analysis-body">
+                                        <!-- Feedback analysis will be added here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-word-cloud">
+                            <h4>Common Keywords</h4>
+                            <div id="feedback-cloud-container" class="cloud-container">
+                                <!-- Word cloud will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-container">
+                        <h4>Budget Approval Statistics</h4>
+                        <!-- Original voting analysis content will remain here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Public User Dashboard -->
+    <div id="public-dashboard" class="hidden">
+        <nav class="navbar">
+            <h2>Public Portal</h2>
+            <div class="nav-actions">
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </nav>
+        <div class="dashboard-content">
+            <div class="sidebar">
+                <ul>
+                    <li onclick="showPublicSection('public-overview')" class="active">
+                        <i class="fas fa-home"></i> Budget Overview
+                    </li>
+                    <li onclick="showPublicSection('public-projects')">
+                        <i class="fas fa-project-diagram"></i> Ongoing Projects
+                    </li>
+                    <li onclick="showPublicSection('public-reports')">
+                        <i class="fas fa-file-alt"></i> Reports
+                    </li>
+                    <li onclick="showPublicSection('public-feedback')" id="public-feedback-nav">
+                        <i class="fas fa-comment-alt"></i> Submit Feedback
+                    </li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <!-- Public Dashboard Overview Section -->
+                <div id="public-overview" class="section">
+                    <div class="total-budget-card">
+                        <h3>Total National Budget</h3>
+                        <div class="public-budget-amount">₹2,25,000 Crores</div>
+                        <div class="public-budget-year">Fiscal Year 2023-24</div>
+                    </div>
+                    
+                    <div class="sector-allocation">
+                        <h3>Sector-wise Allocation</h3>
+                        <div class="sector-cards">
+                            <!-- Adding predefined sector cards similar to government dashboard -->
+                            <div class="sector-card">
+                                <i class="fas fa-hospital"></i>
+                                <h4>Healthcare</h4>
+                                <div class="sector-amount">₹50,000 Cr</div>
+                                <div class="sector-percentage">22.22%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-road"></i>
+                                <h4>Infrastructure</h4>
+                                <div class="sector-amount">₹45,000 Cr</div>
+                                <div class="sector-percentage">20%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h4>Education</h4>
+                                <div class="sector-amount">₹40,000 Cr</div>
+                                <div class="sector-percentage">17.78%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Defense</h4>
+                                <div class="sector-amount">₹35,000 Cr</div>
+                                <div class="sector-percentage">15.56%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-tractor"></i>
+                                <h4>Agriculture</h4>
+                                <div class="sector-amount">₹30,000 Cr</div>
+                                <div class="sector-percentage">13.33%</div>
+                            </div>
+                            <div class="sector-card">
+                                <i class="fas fa-hands-helping"></i>
+                                <h4>Social Welfare</h4>
+                                <div class="sector-amount">₹25,000 Cr</div>
+                                <div class="sector-percentage">11.11%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="public-budget-facts">
+                        <h3>Key Budget Facts</h3>
+                        <div class="facts-container">
+                            <div class="fact-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>GDP Growth Target</h4>
+                                <p>7.5%</p>
+                            </div>
+                            <div class="fact-card">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <h4>Per Capita Allocation</h4>
+                                <p>₹16,250</p>
+                            </div>
+                            <div class="fact-card">
+                                <i class="fas fa-percentage"></i>
+                                <h4>Fiscal Deficit Target</h4>
+                                <p>4.5% of GDP</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-cta-container">
+                        <div class="feedback-cta-card">
+                            <h3>Your Feedback Matters</h3>
+                            <p>Help us improve budget allocation by sharing your thoughts and suggestions.</p>
+                            <button onclick="goToFeedbackForm()" class="cta-feedback-btn">
+                                <i class="fas fa-comment-alt"></i> Submit Your Feedback
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Public Dashboard Ongoing Projects Section -->
+                <div id="public-projects" class="section hidden">
+                    <h3>Ongoing Projects Across India</h3>
+                    
+                    <div class="projects-filters">
+                        <div class="filter-group">
+                            <label for="project-category">Category:</label>
+                            <select id="project-category" class="select-input" onchange="filterProjects()">
+                                <option value="all" selected>All Projects</option>
+                                <option value="mega">Mega Projects</option>
+                                <option value="minor">Minor Projects</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="project-status">Status:</label>
+                            <select id="project-status" class="select-input" onchange="filterProjects()">
+                                <option value="all" selected>All Status</option>
+                                <option value="planning">Planning</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                                <option value="delayed">Delayed</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="project-region">Region:</label>
+                            <select id="project-region" class="select-input" onchange="filterProjects()">
+                                <option value="all" selected>All India</option>
+                                <option value="north">North India</option>
+                                <option value="south">South India</option>
+                                <option value="east">East India</option>
+                                <option value="west">West India</option>
+                                <option value="central">Central India</option>
+                                <option value="northeast">Northeast India</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="projects-table-wrapper">
+                        <table class="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Budget (₹ Cr)</th>
+                                    <th>Status</th>
+                                    <th>Completion</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projects-table-body">
+                                <!-- Project rows will be added dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="project-details-modal" class="modal hidden">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="project-modal-title">Project Details</h4>
+                                <span class="close-modal" onclick="closeProjectDetails()">&times;</span>
+                            </div>
+                            <div class="modal-body" id="project-modal-body">
+                                <!-- Project details will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Public Dashboard Reports Section -->
+                <div id="public-reports" class="section hidden">
+                    <h3>Budget Reports and Documents</h3>
+                    
+                    <div class="reports-container">
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                            <h4>Finance Bill</h4>
+                            <p>Legislative proposal for changes in taxation and financial regulations</p>
+                            <a href="./pdf folder/Finance_Bill.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/Finance_Bill.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                        
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <h4>Annual Financial Statement</h4>
+                            <p>Detailed statement of estimated receipts and expenditures</p>
+                            <a href="./pdf folder/annual financial statement.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/annual financial statement.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                        
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <h4>Budget Speech</h4>
+                            <p>Complete transcript of the Finance Minister's budget presentation</p>
+                            <a href="./pdf folder/Budget_Speech.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/Budget_Speech.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                        
+                        <div class="report-box">
+                            <div class="report-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>Budget Highlights</h4>
+                            <p>Key points and major announcements from the current budget</p>
+                            <a href="./pdf folder/budget highlights.pdf" class="report-btn" download>
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="./pdf folder/budget highlights.pdf" class="report-btn view-btn" target="_blank">
+                                <i class="fas fa-eye"></i> View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Public Dashboard Feedback Section -->
+                <div id="public-feedback" class="section hidden">
+                    <h3>Public Feedback Analysis</h3>
+                    
+                    <div class="feedback-card">
+                        <div class="feedback-section">
+                            <h4>Submit Your Feedback</h4>
+                            
+                            <div class="feedback-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="feedback-topic">Topic</label>
+                                        <select id="feedback-topic" class="select-input">
+                                            <option value="healthcare">Healthcare</option>
+                                            <option value="education">Education</option>
+                                            <option value="infrastructure">Infrastructure</option>
+                                            <option value="agriculture">Agriculture</option>
+                                            <option value="defense">Defense</option>
+                                            <option value="social-welfare">Social Welfare</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="feedback-text">Your Feedback</label>
+                                        <textarea id="feedback-text" rows="4" placeholder="Enter your feedback or suggestion about budget allocation"></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="feedback-satisfaction">Satisfaction Level</label>
+                                        <div class="satisfaction-slider">
+                                            <input type="range" id="feedback-satisfaction" min="1" max="10" value="5">
+                                            <div class="satisfaction-labels">
+                                                <span>Not Satisfied</span>
+                                                <span>Neutral</span>
+                                                <span>Very Satisfied</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <button onclick="submitFeedback()" id="submit-feedback-btn" class="submit-feedback-btn">Submit Feedback</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-confirmation hidden" id="public-feedback-confirmation">
+                        <div class="confirmation-message">
+                            <i class="fas fa-check-circle"></i>
+                            <h4>Thank You for Your Feedback!</h4>
+                            <p>Your feedback has been submitted successfully. Your input helps us improve budget allocation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-results hidden" id="public-feedback-results">
+                        <h4>AI Feedback Analysis</h4>
+                        <div class="feedback-metrics">
+                            <div class="metric-card">
+                                <h5>Total Feedback</h5>
+                                <div class="metric-value" id="public-total-feedback-count">0</div>
+                            </div>
+                            <div class="metric-card">
+                                <h5>Overall Satisfaction</h5>
+                                <div class="metric-value" id="public-overall-satisfaction">0%</div>
+                            </div>
+                            <div class="metric-card">
+                                <h5>Top Concern</h5>
+                                <div class="metric-value" id="public-top-concern">None</div>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-analysis-container">
+                            <h4>Common Feedback Themes</h4>
+                            <div class="importance-legend">
+                                <div class="importance-item high">High Importance</div>
+                                <div class="importance-item medium">Medium Importance</div>
+                                <div class="importance-item low">Low Importance</div>
+                            </div>
+                            <div class="feedback-table-container">
+                                <table class="feedback-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Topic</th>
+                                            <th>Feedback</th>
+                                            <th>Importance</th>
+                                            <th>Sentiment</th>
+                                            <th>Frequency</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="public-feedback-analysis-body">
+                                        <!-- Feedback analysis will be added here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="feedback-word-cloud">
+                            <h4>Common Keywords</h4>
+                            <div id="public-feedback-cloud-container" class="cloud-container">
+                                <!-- Word cloud will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Public Word Cloud Section -->
+                <div id="public-word-cloud-section" class="hidden">
+                    <h3>Public Feedback Analysis</h3>
+                    <p>Common themes from public feedback:</p>
+                    <div id="public-word-cloud" class="word-cloud-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="feedback.js"></script>
+</body>
+</html> 
