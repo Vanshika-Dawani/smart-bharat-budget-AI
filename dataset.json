@@ -1,0 +1,220 @@
+{
+    "metadata": {
+        "version": "1.1",
+        "lastUpdated": "2024-03-21",
+        "description": "Enhanced Budget Allocation System Dataset",
+        "dataSources": [
+            "Public Feedback",
+            "Government Records",
+            "Economic Indicators",
+            "Historical Budget Data"
+        ]
+    },
+    "budgetData": {
+        "totalBudget": 225000,
+        "currency": "INR",
+        "fiscalYear": "2023-24",
+        "previousYear": {
+            "totalBudget": 200000,
+            "fiscalYear": "2022-23"
+        },
+        "sectorAllocation": {
+            "healthcare": {
+                "amount": 50000,
+                "percentage": 22.22,
+                "subcategories": {
+                    "hospitals": 20000,
+                    "medicalResearch": 10000,
+                    "publicHealth": 15000,
+                    "healthInsurance": 5000
+                },
+                "keyProjects": [
+                    "National Health Mission",
+                    "Ayushman Bharat",
+                    "Medical Infrastructure Upgrade"
+                ]
+            },
+            "infrastructure": {
+                "amount": 45000,
+                "percentage": 20.00,
+                "subcategories": {
+                    "roads": 15000,
+                    "railways": 15000,
+                    "urbanDevelopment": 10000,
+                    "ports": 5000
+                },
+                "keyProjects": [
+                    "Bharatmala Project",
+                    "Sagarmala Project",
+                    "Smart Cities Mission"
+                ]
+            },
+            "education": {
+                "amount": 40000,
+                "percentage": 17.78,
+                "subcategories": {
+                    "primaryEducation": 15000,
+                    "higherEducation": 15000,
+                    "vocationalTraining": 5000,
+                    "research": 5000
+                },
+                "keyProjects": [
+                    "Samagra Shiksha",
+                    "Higher Education Financing Agency",
+                    "National Digital Education Architecture"
+                ]
+            },
+            "defense": {
+                "amount": 35000,
+                "percentage": 15.56,
+                "subcategories": {
+                    "military": 20000,
+                    "research": 10000,
+                    "infrastructure": 5000
+                },
+                "keyProjects": [
+                    "Atmanirbhar Bharat in Defense",
+                    "Defense Corridors",
+                    "Modernization Program"
+                ]
+            },
+            "agriculture": {
+                "amount": 30000,
+                "percentage": 13.33,
+                "subcategories": {
+                    "farmersSupport": 15000,
+                    "research": 5000,
+                    "infrastructure": 5000,
+                    "insurance": 5000
+                },
+                "keyProjects": [
+                    "PM Kisan Samman Nidhi",
+                    "Kisan Rail",
+                    "Micro Irrigation Fund"
+                ]
+            },
+            "socialWelfare": {
+                "amount": 25000,
+                "percentage": 11.11,
+                "subcategories": {
+                    "pensions": 10000,
+                    "employment": 10000,
+                    "housing": 5000
+                },
+                "keyProjects": [
+                    "PM Awas Yojana",
+                    "National Social Assistance Program",
+                    "MGNREGA"
+                ]
+            }
+        }
+    },
+    "feedbackData": {
+        "totalFeedback": 0,
+        "overallSatisfaction": 0,
+        "feedbackEntries": [],
+        "feedbackMetrics": {
+            "bySector": {
+                "healthcare": { "count": 0, "satisfaction": 0 },
+                "education": { "count": 0, "satisfaction": 0 },
+                "infrastructure": { "count": 0, "satisfaction": 0 },
+                "agriculture": { "count": 0, "satisfaction": 0 },
+                "defense": { "count": 0, "satisfaction": 0 },
+                "socialWelfare": { "count": 0, "satisfaction": 0 }
+            },
+            "byRegion": {
+                "north": { "count": 0, "satisfaction": 0 },
+                "south": { "count": 0, "satisfaction": 0 },
+                "east": { "count": 0, "satisfaction": 0 },
+                "west": { "count": 0, "satisfaction": 0 },
+                "central": { "count": 0, "satisfaction": 0 },
+                "northeast": { "count": 0, "satisfaction": 0 }
+            },
+            "byDemographic": {
+                "ageGroups": {
+                    "18-25": { "count": 0, "satisfaction": 0 },
+                    "26-35": { "count": 0, "satisfaction": 0 },
+                    "36-45": { "count": 0, "satisfaction": 0 },
+                    "46-55": { "count": 0, "satisfaction": 0 },
+                    "56+": { "count": 0, "satisfaction": 0 }
+                },
+                "incomeGroups": {
+                    "low": { "count": 0, "satisfaction": 0 },
+                    "middle": { "count": 0, "satisfaction": 0 },
+                    "high": { "count": 0, "satisfaction": 0 }
+                }
+            }
+        }
+    },
+    "votingData": {
+        "totalVotes": 0,
+        "sectorVotes": {
+            "healthcare": 0,
+            "education": 0,
+            "infrastructure": 0,
+            "agriculture": 0,
+            "defense": 0,
+            "socialWelfare": 0
+        },
+        "votingPatterns": {
+            "byRegion": {
+                "north": { "total": 0, "sectorDistribution": {} },
+                "south": { "total": 0, "sectorDistribution": {} },
+                "east": { "total": 0, "sectorDistribution": {} },
+                "west": { "total": 0, "sectorDistribution": {} },
+                "central": { "total": 0, "sectorDistribution": {} },
+                "northeast": { "total": 0, "sectorDistribution": {} }
+            },
+            "byDemographic": {
+                "ageGroups": {},
+                "incomeGroups": {}
+            }
+        }
+    },
+    "analysisMetrics": {
+        "topConcerns": [],
+        "commonThemes": [],
+        "sentimentDistribution": {
+            "positive": 0,
+            "neutral": 0,
+            "negative": 0
+        },
+        "trendAnalysis": {
+            "monthlyTrends": {},
+            "quarterlyTrends": {},
+            "yearlyTrends": {}
+        },
+        "impactAnalysis": {
+            "economicImpact": {
+                "gdpContribution": {},
+                "employmentGeneration": {},
+                "sectorGrowth": {}
+            },
+            "socialImpact": {
+                "accessibility": {},
+                "equity": {},
+                "qualityOfLife": {}
+            }
+        },
+        "recommendations": {
+            "shortTerm": [],
+            "mediumTerm": [],
+            "longTerm": []
+        }
+    },
+    "economicIndicators": {
+        "gdp": {
+            "current": 0,
+            "growthRate": 0,
+            "sectorContribution": {}
+        },
+        "inflation": {
+            "current": 0,
+            "trend": {}
+        },
+        "employment": {
+            "unemploymentRate": 0,
+            "sectorEmployment": {}
+        }
+    }
+} 

@@ -1,0 +1,13 @@
+{
+    "votes": [],
+    "totalVotes": 0,
+    "sectorVotes": {
+        "healthcare": 0,
+        "education": 0,
+        "infrastructure": 0,
+        "agriculture": 0,
+        "defense": 0,
+        "social-welfare": 0
+    },
+    "feedback": []
+} 
